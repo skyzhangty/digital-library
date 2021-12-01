@@ -1,5 +1,4 @@
 import React from 'react';
-import { useArtworks } from '../hooks/useArtworks';
 import {
   Button,
   Card,
@@ -10,9 +9,13 @@ import {
   Typography,
 } from '@mui/material';
 import { imageUrl } from '../utils';
+import { useMatch } from 'react-location';
+import { LocationGenerics } from '../models';
 
 export function Artworks() {
-  const { data, config } = useArtworks();
+  const {
+    data: { artworks },
+  } = useMatch<LocationGenerics>();
   return (
     <Grid
       container
@@ -20,12 +23,12 @@ export function Artworks() {
       spacing={{ xs: 2, md: 3 }}
       columns={{ xs: 4, sm: 8, md: 12 }}
     >
-      {data.map((item) => (
-        <Grid item xs={2} sm={4} md={4}>
-          <Card sx={{ maxWidth: 400 }}>
+      {artworks?.data.map((item) => (
+        <Grid item xs={2} sm={4} md={4} key={item.id}>
+          <Card>
             <CardMedia
               component="img"
-              image={`${imageUrl(config.iiif_url, item.image_id)}`}
+              image={`${imageUrl(artworks?.config.iiif_url, item.image_id)}`}
               alt="green iguana"
             />
             <CardContent>

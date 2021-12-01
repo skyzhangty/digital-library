@@ -1,3 +1,5 @@
+import { MakeGenerics } from 'react-location';
+
 export interface Artwork {
   id: number;
   title: string;
@@ -36,5 +38,10 @@ export const emptyArtworksResponse: ArtworksResponse = {
   config: {
     iiif_url: '',
   },
-}; 
+};
 
+export type LocationGenerics = MakeGenerics<{
+  LoaderData: {
+    artworks: ArtworksResponse;
+  };
+}>;

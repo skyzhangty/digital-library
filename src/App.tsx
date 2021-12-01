@@ -1,17 +1,25 @@
 import React from 'react';
 import './App.css';
 import { Artworks } from './components/Artworks';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactLocation, Router } from 'react-location';
+import { fetchArtworks } from './apis';
 
-const queryClient = new QueryClient();
+const reactLocation = new ReactLocation();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="App">
-        <Artworks />
-      </div>
-    </QueryClientProvider>
+    <Router
+      location={reactLocation}
+      routes={[
+        {
+          path: '/',
+          element: <Artworks />,
+          loader: async () => ({
+            artworks: await fetchArtworks(),
+          }),
+        },
+      ]}
+    />
   );
 }
 
