@@ -44,4 +44,8 @@ export type LocationGenerics = MakeGenerics<{
   LoaderData: {
     artworks: ArtworksResponse;
   };
+  Search: {
+    page: number;
+    filter: string;
+  };
 }>;

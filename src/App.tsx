@@ -1,25 +1,22 @@
 import React from 'react';
 import './App.css';
 import { Artworks } from './components/Artworks';
-import { ReactLocation, Router } from 'react-location';
-import { fetchArtworks } from './apis';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ScrollToTop } from './components/ScrollToTop';
 
-const reactLocation = new ReactLocation();
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <Router
-      location={reactLocation}
-      routes={[
-        {
-          path: '/',
-          element: <Artworks />,
-          loader: async () => ({
-            artworks: await fetchArtworks(),
-          }),
-        },
-      ]}
-    />
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/artworks" element={<Artworks />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
