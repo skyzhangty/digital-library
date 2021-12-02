@@ -46,7 +46,9 @@ export function Artworks() {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button size="small" href={`artworks/${item.id}`}>
+                  Learn More
+                </Button>
               </CardActions>
             </Card>
           </Grid>

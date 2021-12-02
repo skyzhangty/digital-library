@@ -11,7 +11,7 @@ export function useArtworks() {
 
   useEffect(() => {
     fetchArtworks(page, search).then(setArtworks);
-  }, [searchParams]);
+  }, [page, search]);
 
   return artworks;
 }

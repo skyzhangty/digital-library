@@ -1,4 +1,5 @@
 import { MakeGenerics } from 'react-location';
+import { Artwork } from './components/Artwork';
 
 export interface Artwork {
   id: number;
@@ -6,6 +7,13 @@ export interface Artwork {
   image_id: string | null;
   artist_display: string;
   date_display: string;
+  date_start: string;
+  date_end: string;
+  place_of_origin: string;
+  dimensions: string;
+  medium_display: string;
+  credit_line: string;
+  main_reference_number: string;
 }
 
 export interface Pagination {
@@ -19,6 +27,14 @@ export interface Pagination {
 
 export interface ArtworksResponse {
   data: Artwork[];
+  pagination: Pagination;
+  config: {
+    iiif_url: string;
+  };
+}
+
+export interface ArtworkResponse {
+  data: Artwork;
   pagination: Pagination;
   config: {
     iiif_url: string;
