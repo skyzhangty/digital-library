@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Grid, Link, TextField } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
 export function Search() {
@@ -11,30 +11,38 @@ export function Search() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(event.currentTarget.value);
 
-  const handleClick = () => {
-    setSearchParams({ search });
-  };
+  const handleClick = () => setSearchParams({ search });
 
   return (
-    <Grid container sx={{ marginBottom: '1.25rem' }} spacing={{ xs: 2, md: 3 }}>
-      <Grid item xs={10}>
-        <TextField
-          label="Search"
-          fullWidth
-          value={search}
-          onChange={handleChange}
-        />
+    <>
+      <Grid
+        container
+        sx={{ marginBottom: '1.25rem' }}
+        spacing={{ xs: 2, md: 3 }}
+        alignContent="center"
+      >
+        <Grid item xs={8}>
+          <TextField
+            label="Search"
+            fullWidth
+            value={search}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <Button
+            onClick={handleClick}
+            variant="contained"
+            disabled={!search}
+            sx={{ height: '100%', width: '75%' }}
+          >
+            Search
+          </Button>
+        </Grid>
+        <Grid item xs={2}>
+          <Link href="/">Reset Search</Link>
+        </Grid>
       </Grid>
-      <Grid item xs={2}>
-        <Button
-          onClick={handleClick}
-          variant="contained"
-          disabled={!search}
-          sx={{ height: '100%', width: '75%' }}
-        >
-          Search
-        </Button>
-      </Grid>
-    </Grid>
+    </>
   );
 }

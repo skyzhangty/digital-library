@@ -9,6 +9,7 @@ import {
   CardMedia,
   CircularProgress,
   Grid,
+  Link,
   Typography,
 } from '@mui/material';
 import { imageUrl } from '../utils';
@@ -22,6 +23,13 @@ export function Artworks() {
     return <></>;
   }
   const { data, pagination } = artworks;
+  if (data.length === 0) {
+    return (
+      <h4>
+        No artwork found! <Link href="/">Go back</Link>
+      </h4>
+    );
+  }
   return (
     <Box sx={{ margin: '1.25rem', padding: '2.5rem' }}>
       <Search />
