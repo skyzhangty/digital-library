@@ -9,7 +9,8 @@ export function ArtworksPagination(props: { pagination: PaginationModel }) {
   const { total_pages } = props.pagination;
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setSearchParams({ page: value.toString() });
+    searchParams.set('page', value.toString());
+    setSearchParams(searchParams);
   };
 
   return (

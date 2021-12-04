@@ -8,15 +8,12 @@ export function Artwork() {
   if (!artwork) {
     return <></>;
   }
-  const { data, config } = artwork;
+  const { data } = artwork;
 
   return (
     <Grid container sx={{ margin: '1.25rem', padding: '1.25rem' }}>
       <Grid item xs>
-        <img
-          src={`${imageUrl(config.iiif_url, data.image_id)}`}
-          alt={data.title}
-        />
+        <img src={`${imageUrl(data.image_id)}`} alt={data.title} />
       </Grid>
       <Grid item xs>
         <Grid

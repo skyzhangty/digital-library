@@ -1,4 +1,3 @@
-import { MakeGenerics } from 'react-location';
 import { Artwork } from './components/Artwork';
 
 export interface Artwork {
@@ -28,40 +27,9 @@ export interface Pagination {
 export interface ArtworksResponse {
   data: Artwork[];
   pagination: Pagination;
-  config: {
-    iiif_url: string;
-  };
 }
 
 export interface ArtworkResponse {
   data: Artwork;
   pagination: Pagination;
-  config: {
-    iiif_url: string;
-  };
 }
-
-export const emptyArtworksResponse: ArtworksResponse = {
-  data: [],
-  pagination: {
-    total: 0,
-    limit: 0,
-    offset: 0,
-    total_pages: 0,
-    current_page: 0,
-    next_url: '',
-  },
-  config: {
-    iiif_url: '',
-  },
-};
-
-export type LocationGenerics = MakeGenerics<{
-  LoaderData: {
-    artworks: ArtworksResponse;
-  };
-  Search: {
-    page: number;
-    filter: string;
-  };
-}>;

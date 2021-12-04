@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -11,18 +12,19 @@ import {
 import { imageUrl } from '../utils';
 import { ArtworksPagination } from './ArtworksPagination';
 import { useArtworks } from '../hooks/useArtworks';
+import { Search } from './Search';
 
 export function Artworks() {
   const artworks = useArtworks();
   if (!artworks) {
     return <></>;
   }
-  const { data, config, pagination } = artworks;
+  const { data, pagination } = artworks;
   return (
-    <>
+    <Box sx={{ margin: '1.25rem', padding: '2.5rem' }}>
+      <Search />
       <Grid
         container
-        sx={{ padding: 10 }}
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
@@ -31,7 +33,7 @@ export function Artworks() {
             <Card>
               <CardMedia
                 component="img"
-                image={`${imageUrl(config.iiif_url, item.image_id)}`}
+                image={`${imageUrl(item.image_id)}`}
                 alt="green iguana"
               />
               <CardContent>
@@ -55,6 +57,6 @@ export function Artworks() {
         ))}
       </Grid>
       <ArtworksPagination pagination={pagination} />
-    </>
+    </Box>
   );
 }
