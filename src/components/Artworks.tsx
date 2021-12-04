@@ -1,11 +1,13 @@
 import React from 'react';
 import {
+  Backdrop,
   Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
+  CircularProgress,
   Grid,
   Typography,
 } from '@mui/material';
@@ -15,7 +17,7 @@ import { useArtworks } from '../hooks/useArtworks';
 import { Search } from './Search';
 
 export function Artworks() {
-  const artworks = useArtworks();
+  const { artworks, isLoading } = useArtworks();
   if (!artworks) {
     return <></>;
   }
@@ -57,6 +59,9 @@ export function Artworks() {
         ))}
       </Grid>
       <ArtworksPagination pagination={pagination} />
+      <Backdrop open={isLoading}>
+        <CircularProgress color="primary" />
+      </Backdrop>
     </Box>
   );
 }
